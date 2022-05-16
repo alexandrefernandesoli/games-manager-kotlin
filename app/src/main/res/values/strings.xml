@@ -1,0 +1,33 @@
+<resources>
+    <string name="app_name">GamesManagerApp</string>
+    <string name="action_settings">Settings</string>
+    <!-- Strings used for fragments for navigation -->
+    <string name="first_fragment_label">First Fragment</string>
+    <string name="second_fragment_label">Second Fragment</string>
+    <string name="next">Next</string>
+    <string name="previous">Previous</string>
+
+    <string name="hello_first_fragment">Hello first fragment</string>
+    <string name="hello_second_fragment">Hello second fragment. Arg: %1$s</string>
+    <string name="players">Jogadores</string>
+    <string name="manage_players">Gerenciar jogadores</string>
+    <string name="teams">Times</string>
+    <string name="manage_teams">Gerenciar times</string>
+    <string name="add_new_player">Adicione novo jogador</string>
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="player">Jogador</string>
+    <string name="team">Time</string>
+    <string name="adicione_um_novo_time">Adicione um novo time</string>
+    <string name="team_description">Descrição do time</string>
+    <string name="team_hint">Ex. Flamengo</string>
+    <string name="save">Salvar</string>
+    <string name="edit">Editar</string>
+    <string name="delete">Excluir</string>
+    <string name="name">Nome</string>
+    <string name="name_hint">Ex. Neymar</string>
+    <string name="cpf_hint">Ex. 012.345.678–91</string>
+    <string name="cpf">CPF</string>
+    <string name="birth_year">Ano de nascimento</string>
+    <string name="birth_year_hint">Ex. 1989</string>
+</resources>

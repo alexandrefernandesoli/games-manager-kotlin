@@ -1,0 +1,81 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/nav_graph"
+    app:startDestination="@id/MainFragment">
+
+    <fragment
+        android:id="@+id/MainFragment"
+        android:name="com.example.gamesmanagerapp.MainFragment"
+        android:label="Gerenciador de Jogos"
+        tools:layout="@layout/fragment_main">
+
+        <action
+            android:id="@+id/action_MainFragment_to_PlayersFragment"
+            app:destination="@id/PlayersFragment" />
+        <action
+            android:id="@+id/action_MainFragment_to_TeamsFragment"
+            app:destination="@id/TeamsFragment" />
+    </fragment>
+
+    <fragment
+        android:id="@+id/PlayersFragment"
+        android:name="com.example.gamesmanagerapp.PlayersFragment"
+        android:label="Jogadores"
+        tools:layout="@layout/fragment_players">
+
+        <action
+            android:id="@+id/action_PlayersFragment_to_PlayersFormFragment"
+            app:destination="@id/PlayersFormFragment"
+            />
+    </fragment>
+    <fragment
+        android:id="@+id/TeamsFragment"
+        android:name="com.example.gamesmanagerapp.TeamsFragment"
+        android:label="Times"
+        tools:layout="@layout/fragment_teams">
+
+        <action
+            android:id="@+id/action_TeamsFragment_to_TeamsFormFragment"
+            app:destination="@id/TeamsFormFragment"
+            />
+
+    </fragment>
+
+    <fragment
+        android:id="@+id/PlayersFormFragment"
+        android:name="com.example.gamesmanagerapp.PlayersFormFragment"
+        android:label="Formulário Jogador"
+        tools:layout="@layout/fragment_players_form"
+        >
+
+        <action
+            android:id="@+id/action_PlayersFormFragment_to_PlayersFragment"
+            app:destination="@id/PlayersFragment"
+            />
+
+        <argument
+            android:name="playerId"
+            app:argType="integer"
+            android:defaultValue="0" />
+    </fragment>
+
+    <fragment
+        android:id="@+id/TeamsFormFragment"
+        android:name="com.example.gamesmanagerapp.TeamsFormFragment"
+        android:label="Formulário Time"
+        tools:layout="@layout/fragment_teams_form"
+        >
+
+        <action
+            android:id="@+id/action_TeamsFormFragment_to_TeamsFragment"
+            app:destination="@id/TeamsFragment"
+            />
+
+        <argument
+            android:name="teamId"
+            app:argType="integer"
+            android:defaultValue="0" />
+    </fragment>
+</navigation>
