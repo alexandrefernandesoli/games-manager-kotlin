@@ -93,7 +93,7 @@ class PlayersFormFragment : Fragment() {
                 Toast.makeText(context, "É necessário digitar um cpf válido", Toast.LENGTH_SHORT).show()
                 return
             }
-            playersRepository.isCpfRegistered(playerCPF) -> {
+            playersRepository.isCpfRegistered(playerCPF) && !isUpdating -> {
                 Toast.makeText(context, "É necessário digitar um cpf que ainda não esteja cadastrado", Toast.LENGTH_SHORT).show()
                 return
             }
