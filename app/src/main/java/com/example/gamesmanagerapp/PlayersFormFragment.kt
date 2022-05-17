@@ -1,5 +1,6 @@
 package com.example.gamesmanagerapp
 
+import android.database.sqlite.SQLiteConstraintException
 import android.os.Bundle
 import android.util.Log
 import androidx.fragment.app.Fragment
@@ -47,8 +48,8 @@ class PlayersFormFragment : Fragment() {
             findNavController().navigateUp()
         }
 
-        val adapter = ArrayAdapter(requireContext(), android.R.layout.simple_spinner_item, teams)
-        adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item)
+        val adapter = ArrayAdapter(requireContext(), R.layout.simple_spinner_item, teams)
+        adapter.setDropDownViewResource(R.layout.simple_spinner_dropdown_item)
         binding.teamsList.adapter = adapter
 
 
@@ -92,6 +93,10 @@ class PlayersFormFragment : Fragment() {
                 Toast.makeText(context, "É necessário digitar um cpf válido", Toast.LENGTH_SHORT).show()
                 return
             }
+            playersRepository.isCpfRegistered(playerCPF) -> {
+                Toast.makeText(context, "É necessário digitar um cpf que ainda não esteja cadastrado", Toast.LENGTH_SHORT).show()
+                return
+            }
             playerBirthYear < now - 200 || playerBirthYear > now -> {
                 Toast.makeText(context, "É necessário digitar uma data de nascimento válida", Toast.LENGTH_SHORT).show()
                 return
@@ -100,6 +105,7 @@ class PlayersFormFragment : Fragment() {
 
         if(isUpdating && editingPlayer != null){
             val player = Player(playerName, cleanCPF(playerCPF), playerBirthYear, selectedTeam.teamId, id = editingPlayer!!.id)
+
             playersRepository.updatePlayer(player)
         } else {
             val player = Player(playerName, cleanCPF(playerCPF), playerBirthYear, selectedTeam.teamId)

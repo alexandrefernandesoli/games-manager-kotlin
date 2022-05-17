@@ -1,17 +1,17 @@
 package com.example.gamesmanagerapp
 
+import android.app.SearchManager
+import android.content.Context
 import android.os.Bundle
 import android.view.*
 import android.widget.AdapterView
-import android.widget.ArrayAdapter
 import android.widget.Toast
+import androidx.appcompat.widget.SearchView
 import androidx.fragment.app.Fragment
 import androidx.navigation.fragment.findNavController
 import com.example.gamesmanagerapp.databinding.FragmentPlayersBinding
 import com.example.gamesmanagerapp.entities.Player
-import com.example.gamesmanagerapp.entities.Team
 import com.example.gamesmanagerapp.repositories.PlayerRepository
-import com.example.gamesmanagerapp.repositories.TeamRepository
 import com.example.gamesmanagerapp.views.PlayerDetail
 
 class PlayersFragment : Fragment() {
@@ -19,17 +19,22 @@ class PlayersFragment : Fragment() {
     private val binding get() = _binding!!
 
     private lateinit var playersRepository: PlayerRepository
-    private lateinit var teamRepository: TeamRepository
+
     private lateinit var players: List<PlayerDetail>
-    private lateinit var teams: List<Team>
+    private lateinit var filteredPlayers: List<PlayerDetail>
+
     private lateinit var listAdapter: PlayersAdapter
-    private var isInitial = true
+
+    private lateinit var searchView: SearchView
+    private lateinit var queryTextListener: SearchView.OnQueryTextListener
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
         _binding = FragmentPlayersBinding.inflate(inflater, container, false)
+
+        setHasOptionsMenu(true)
 
         return binding.root
     }
@@ -38,35 +43,13 @@ class PlayersFragment : Fragment() {
         super.onViewCreated(view, savedInstanceState)
 
         playersRepository = PlayerRepository(requireContext())
-        teamRepository = TeamRepository(requireContext())
 
-        teams = teamRepository.getAllTeams()
         players = playersRepository.getAllPlayersWithDetail()
 
-        setListAdapter()
-
-        teams = teams.plus(Team("Todos", 0))
-        teams = teams.sortedBy { it.teamId }
-
-        val adapter = ArrayAdapter(requireContext(), android.R.layout.simple_spinner_item, teams)
-        adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item)
-        binding.spinnerTeams.adapter = adapter
+        setListAdapter(players)
 
         binding.addPlayerButton.setOnClickListener {
             findNavController().navigate(R.id.action_PlayersFragment_to_PlayersFormFragment)
-        }
-
-        binding.spinnerTeams.onItemSelectedListener = object : AdapterView.OnItemSelectedListener {
-            override fun onItemSelected(p0: AdapterView<*>?, p1: View?, p2: Int, p3: Long) {
-                if(!isInitial){
-                    filterButtonHandler()
-                }
-                isInitial = false
-            }
-
-            override fun onNothingSelected(p0: AdapterView<*>?) {
-                return
-            }
         }
     }
 
@@ -75,21 +58,61 @@ class PlayersFragment : Fragment() {
         _binding = null
     }
 
-    private fun filterButtonHandler() {
-        val selectedSpinnerItem = binding.spinnerTeams.selectedItem as Team
+    override fun onCreateOptionsMenu(menu: Menu, inflater: MenuInflater) {
 
+        inflater.inflate(R.menu.search_menu, menu)
 
+        val searchItem = menu.findItem(R.id.action_search)
+        val searchManager =
+            requireActivity().getSystemService(Context.SEARCH_SERVICE) as SearchManager
 
-        players = if(selectedSpinnerItem.teamId == 0){
-            playersRepository.getAllPlayersWithDetail()
-        } else {
-            playersRepository.getPlayersByTeamId(selectedSpinnerItem.teamId)
+        if (searchItem != null) {
+            searchView = searchItem.actionView as SearchView
+
+            searchView.queryHint = "Buscar..."
+        }
+        searchView.setSearchableInfo(searchManager.getSearchableInfo(requireActivity().componentName))
+
+        queryTextListener = object : SearchView.OnQueryTextListener {
+            override fun onQueryTextChange(newText: String): Boolean {
+                filteredPlayers = players.filter {
+                    it.name.contains(
+                        newText,
+                        ignoreCase = true
+                    ) || it.teamDescription.contains(newText, ignoreCase = true) || it.cpf.contains(
+                        newText
+                    ) || it.birthYear.toString().contains(newText)
+                }
+
+                setListAdapter(filteredPlayers)
+
+                return true
+            }
+
+            override fun onQueryTextSubmit(query: String): Boolean {
+                filteredPlayers = players.filter {
+                    it.name.contains(
+                        query,
+                        ignoreCase = true
+                    ) || it.teamDescription.contains(query, ignoreCase = true) || it.cpf.contains(
+                        query
+                    ) || it.birthYear.toString().contains(query)
+                }
+
+                setListAdapter(filteredPlayers)
+
+                return true
+            }
         }
 
-        setListAdapter()
+        searchView.setOnQueryTextListener(queryTextListener)
+
+
+        super.onCreateOptionsMenu(menu, inflater)
     }
 
-    private fun setListAdapter() {
+
+    private fun setListAdapter(players: List<PlayerDetail>) {
         listAdapter = PlayersAdapter(requireContext(), players)
 
         registerForContextMenu(binding.playersList)
@@ -125,11 +148,11 @@ class PlayersFragment : Fragment() {
 
                 players = players.filter { it.id != selectedPlayer.id }
 
-                setListAdapter()
+                setListAdapter(players)
 
                 Toast.makeText(
                     context,
-                    "Jogador ${selectedPlayer.name} foi removido com sucesso",
+                    "Jogador removido com sucesso",
                     Toast.LENGTH_SHORT
                 ).show()
 

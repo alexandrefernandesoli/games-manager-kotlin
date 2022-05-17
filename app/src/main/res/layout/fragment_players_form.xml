@@ -6,110 +6,95 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     tools:context=".TeamsFormFragment"
     android:paddingHorizontal="16dp"
-    android:paddingTop="48dp"
+    android:paddingTop="32dp"
+    android:background="?colorOnPrimary"
     >
 
-
-    <TextView
-        android:id="@+id/textViewPlayerName"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="@string/name"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        tools:layout_editor_absoluteX="16dp"
-        tools:layout_editor_absoluteY="40dp"
-        />
-
-    <EditText
-        android:id="@+id/playerName"
+    <com.google.android.material.textfield.TextInputLayout
+        android:id="@+id/playerNameLayout"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginTop="6dp"
-        android:ems="10"
-        android:hint="@string/name_hint"
-        android:inputType="textPersonName"
-        android:text=""
+        android:hint="@string/name"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/textViewPlayerName" />
-    <TextView
-        android:id="@+id/textViewCPF"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="@string/cpf"
-        app:layout_constraintTop_toBottomOf="@id/playerName"
-        app:layout_constraintStart_toStartOf="parent"
-        tools:layout_editor_absoluteX="16dp"
-        tools:layout_editor_absoluteY="40dp"
-        android:layout_marginTop="16dp"
-        />
+        app:layout_constraintTop_toTopOf="parent">
+        <com.google.android.material.textfield.TextInputEditText
+            android:id="@+id/playerName"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            />
+    </com.google.android.material.textfield.TextInputLayout>
 
-    <EditText
-        android:id="@+id/playerCPF"
+    <com.google.android.material.textfield.TextInputLayout
+        android:id="@+id/playerCPFLayout"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginTop="6dp"
-        android:ems="10"
-        android:hint="@string/cpf_hint"
-        android:inputType="textPersonName"
-        android:text=""
+        android:hint="@string/cpf"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/textViewCPF" />
-    <TextView
-        android:id="@+id/textViewBirthYear"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="@string/birth_year"
-        app:layout_constraintTop_toBottomOf="@id/playerCPF"
-        app:layout_constraintStart_toStartOf="parent"
-        tools:layout_editor_absoluteX="16dp"
-        tools:layout_editor_absoluteY="40dp"
-        android:layout_marginTop="16dp"
-        />
+        app:layout_constraintTop_toBottomOf="@id/playerNameLayout"
+        android:layout_marginTop="32dp">
+        <com.google.android.material.textfield.TextInputEditText
+            android:id="@+id/playerCPF"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            />
+    </com.google.android.material.textfield.TextInputLayout>
 
-    <EditText
-        android:id="@+id/playerBirthYear"
+    <com.google.android.material.textfield.TextInputLayout
+        android:id="@+id/playerBirthYearLayout"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginTop="6dp"
-        android:ems="10"
-        android:hint="@string/birth_year_hint"
-        android:inputType="number"
-        android:text=""
+        android:hint="@string/birth_year"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/textViewBirthYear" />
+        app:layout_constraintTop_toBottomOf="@id/playerCPFLayout"
+        android:layout_marginTop="32dp">
+
+        <com.google.android.material.textfield.TextInputEditText
+            android:id="@+id/playerBirthYear"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            />
+
+    </com.google.android.material.textfield.TextInputLayout>
 
     <TextView
-        android:id="@+id/textViewTeam"
+        android:id="@+id/teamsHint"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="@string/team"
-        app:layout_constraintTop_toBottomOf="@id/playerBirthYear"
+        android:textColor="@color/fadeWhite"
         app:layout_constraintStart_toStartOf="parent"
-        tools:layout_editor_absoluteX="16dp"
-        tools:layout_editor_absoluteY="40dp"
-        android:layout_marginTop="16dp"
+        android:layout_marginTop="32dp"
+        app:layout_constraintTop_toBottomOf="@id/playerBirthYearLayout"
         />
-
-    <Spinner
-        android:id="@+id/teamsList"
+    <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:minHeight="32dp"
-        android:layout_marginTop="6dp"
-        app:layout_constraintTop_toBottomOf="@id/textViewTeam"
+        android:padding="2dp"
+        android:background="@color/fadeWhite"
         app:layout_constraintStart_toStartOf="parent"
-        />
+        app:layout_constraintTop_toBottomOf="@id/teamsHint"
+        android:layout_marginTop="4dp"
+        android:id="@+id/teamsListLayout"
+        >
+        <Spinner
+            android:id="@+id/teamsList"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            />
+    </LinearLayout>
+
 
     <Button
         android:id="@+id/saveButton"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:text="@string/save"
-        app:layout_constraintTop_toBottomOf="@id/teamsList"
+        app:layout_constraintTop_toBottomOf="@id/teamsListLayout"
         app:layout_constraintStart_toStartOf="parent"
-        tools:layout_editor_absoluteX="18dp"
-        tools:layout_editor_absoluteY="144dp"
-        android:layout_marginTop="32dp"/>
+        android:layout_marginTop="16dp"
+        android:textColor="@color/white"
+        style="@style/Widget.MaterialComponents.Button"
+        />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

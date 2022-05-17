@@ -19,6 +19,9 @@ interface PlayerDao {
     @Query("SELECT * FROM PlayerDetail WHERE teamId == (:teamId)")
     fun getPlayersFromTeam(teamId: Int): List<PlayerDetail>
 
+    @Query("SELECT * FROM player WHERE cpf == :cpf LIMIT 1")
+    fun getPlayerWithCPF(cpf: String): Player?
+
     @Insert
     fun insertAll(vararg players: Player)
 

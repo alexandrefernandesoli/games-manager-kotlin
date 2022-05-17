@@ -25,6 +25,12 @@ class PlayerRepository(context: Context) {
         return db.playerDao().getPlayersFromTeam(teamId)
     }
 
+    fun isCpfRegistered(cpf: String): Boolean {
+        val player = db.playerDao().getPlayerWithCPF(cpf)
+
+        return player != null
+    }
+
     fun deletePlayer(player: Player) {
         db.playerDao().delete(player)
     }

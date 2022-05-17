@@ -10,7 +10,7 @@ import com.example.gamesmanagerapp.entities.Player
 import com.example.gamesmanagerapp.entities.Team
 import com.example.gamesmanagerapp.views.PlayerDetail
 
-@Database(entities = [Player::class, Team::class], views = [PlayerDetail::class], version = 3)
+@Database(entities = [Player::class, Team::class], views = [PlayerDetail::class], version = 1)
 abstract class AppDatabase : RoomDatabase() {
     abstract fun playerDao(): PlayerDao
     abstract fun teamDao(): TeamDao

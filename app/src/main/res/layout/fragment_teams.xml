@@ -4,7 +4,8 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".PlayersFragment">
+    tools:context=".PlayersFragment"
+    android:background="?colorOnPrimary">
     <ListView
         android:id="@+id/teamsList"
         android:layout_width="match_parent"
@@ -21,6 +22,8 @@
         android:clickable="true"
         android:focusable="true"
         android:src="@drawable/ic_plus_svgrepo_com"
+        app:tint="@color/white"
+        android:backgroundTint="?colorPrimaryVariant"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintRight_toRightOf="parent" />
 </androidx.constraintlayout.widget.ConstraintLayout>

@@ -5,79 +5,102 @@
     android:layout_gravity="center"
     android:longClickable="true"
     android:orientation="vertical"
-    android:padding="15dp">
-
+    android:padding="8dp"
+    android:background="?colorOnSecondary"
+    >
 
     <LinearLayout
-        android:layout_width="match_parent"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:orientation="horizontal"
         >
-        <TextView
-            android:id="@+id/playerName"
+        <ImageView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_weight="1"
-            android:text="@string/player"
-            android:textSize="20sp"/>
+            android:src="@drawable/ic_person_svgrepo_com__3_"
+            android:padding="4dp"
+            android:layout_gravity="center_vertical"/>
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                >
+                <TextView
+                    android:id="@+id/playerName"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:text="@string/player"
+                    android:textSize="20sp"
+                    android:textColor="@color/white"/>
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                >
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Time:"
+                    android:textStyle="bold"
+                    android:layout_marginEnd="4dp"
+                    android:textColor="@color/fadeWhite"/>
+                <TextView
+                    android:id="@+id/playerTeam"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="@string/team"
+                    android:textColor="@color/fadeWhite"/>
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                >
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="CPF:"
+                    android:textStyle="bold"
+                    android:layout_marginEnd="4dp"
+                    android:textColor="@color/fadeWhite"/>
+                <TextView
+                    android:id="@+id/playerCPF"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="103.132.412-01"
+                    android:textColor="@color/fadeWhite"/>
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                >
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Ano de nascimento:"
+                    android:textStyle="bold"
+                    android:layout_marginEnd="4dp"
+                    android:textColor="@color/fadeWhite"/>
+                <TextView
+                    android:id="@+id/playerBirthYear"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="1998"
+                    android:textAlignment="textEnd"
+                    android:textColor="@color/fadeWhite"/>
+            </LinearLayout>
+        </LinearLayout>
     </LinearLayout>
-
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:orientation="horizontal"
-        >
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="Time:"
-            android:textStyle="bold"
-            android:layout_marginEnd="4dp"/>
-        <TextView
-            android:id="@+id/playerTeam"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="@string/team" />
-    </LinearLayout>
-
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:orientation="horizontal"
-        >
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="CPF:"
-            android:textStyle="bold"
-            android:layout_marginEnd="4dp"/>
-        <TextView
-            android:id="@+id/playerCPF"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="103.132.412-01" />
-    </LinearLayout>
-
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:orientation="horizontal"
-        >
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="Ano de nascimento:"
-            android:textStyle="bold"
-            android:layout_marginEnd="4dp"/>
-        <TextView
-            android:id="@+id/playerBirthYear"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="1998"
-            android:textAlignment="textEnd" />
-    </LinearLayout>
-
-
 
 
 

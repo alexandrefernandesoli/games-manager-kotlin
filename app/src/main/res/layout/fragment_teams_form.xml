@@ -7,41 +7,37 @@
     tools:context=".TeamsFormFragment"
     android:paddingHorizontal="16dp"
     android:paddingTop="48dp"
+    android:background="?colorOnPrimary"
     >
 
-
-    <TextView
-        android:id="@+id/textView"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="@string/team_description"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        tools:layout_editor_absoluteX="16dp"
-        tools:layout_editor_absoluteY="40dp"
-        />
-
-    <EditText
-        android:id="@+id/teamDescription"
+    <com.google.android.material.textfield.TextInputLayout
+        android:id="@+id/teamDescriptionLayout"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginTop="8dp"
-        android:ems="10"
-        android:hint="@string/team_hint"
-        android:inputType="textPersonName"
-        android:text=""
+        android:hint="@string/team_description"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/textView" />
+        app:layout_constraintTop_toTopOf="parent"
+        android:layout_marginTop="32dp">
+
+        <com.google.android.material.textfield.TextInputEditText
+            android:id="@+id/teamDescription"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            />
+
+    </com.google.android.material.textfield.TextInputLayout>
 
     <Button
         android:id="@+id/saveButton"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:text="@string/save"
-        app:layout_constraintTop_toBottomOf="@id/teamDescription"
+        app:layout_constraintTop_toBottomOf="@id/teamDescriptionLayout"
         app:layout_constraintStart_toStartOf="parent"
-        tools:layout_editor_absoluteX="18dp"
-        tools:layout_editor_absoluteY="144dp"
-        android:layout_marginTop="32dp"/>
+        android:layout_marginTop="16dp"
+        android:textColor="@color/white"
+        android:backgroundTint="?colorPrimaryVariant"
+        style="@style/Widget.MaterialComponents.Button"
+        />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

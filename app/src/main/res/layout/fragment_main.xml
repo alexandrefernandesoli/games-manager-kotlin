@@ -5,7 +5,8 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:padding="16dp"
-    tools:context=".MainFragment">
+    tools:context=".MainFragment"
+    android:background="?colorOnPrimary">
 
     <LinearLayout
         app:layout_constraintStart_toStartOf="parent"
@@ -13,7 +14,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:clickable="true"
-        android:background="#f0f0f0"
+        android:background="?colorOnSecondary"
         android:padding="15dp"
         android:id="@+id/playersButton"
         >
@@ -35,13 +36,14 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="@string/players"
-                android:textColor="#161616"
+                android:textColor="@color/white"
                 android:textFontWeight="@android:integer/config_longAnimTime"
                 android:textSize="18dp" />
 
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:textColor="@color/fadeWhite"
                 android:text="@string/manage_players" />
         </LinearLayout>
     </LinearLayout>
@@ -53,7 +55,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:clickable="true"
-        android:background="#f0f0f0"
+        android:background="?colorOnSecondary"
         android:padding="15dp"
         android:layout_marginBottom="10dp"
         android:id="@+id/teamsButton"
@@ -77,13 +79,14 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="@string/teams"
-                android:textColor="#161616"
+                android:textColor="@color/white"
                 android:textFontWeight="@android:integer/config_longAnimTime"
                 android:textSize="18dp" />
 
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:textColor="@color/fadeWhite"
                 android:text="@string/manage_teams" />
         </LinearLayout>
     </LinearLayout>
